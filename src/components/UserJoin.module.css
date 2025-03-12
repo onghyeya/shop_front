@@ -1,0 +1,27 @@
+.join_container{
+  width: 80%;
+  margin: 30px auto;
+}
+
+.join{
+  margin: 30px auto;
+}
+
+.join>div{
+  margin: 10px 0px;
+}
+
+.join>div>p{
+  margin: 10px 0px;
+}
+
+.email{
+  display: flex;
+  gap: 5px;
+}
+
+.Tel{
+  display: flex;
+  gap: 5px;
+}
+

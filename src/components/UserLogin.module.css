@@ -1,0 +1,21 @@
+.container{
+  width: 55%;
+  margin: 0 auto;
+}
+
+.content_container{
+  background-color: rgb(238, 238, 238,0.5);
+  border-radius: 8px;
+  padding: 10px 8px;
+  margin-top: 10px;
+}
+
+.content_container>div{
+  margin-bottom: 12px;
+}
+
+.content_container p{
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-style: italic;
+}

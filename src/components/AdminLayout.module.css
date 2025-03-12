@@ -1,0 +1,27 @@
+/* 
+#2c3930
+3F4F44
+A27B5C
+DCD7C9
+*/
+
+.admin_container{
+  width: 100%;
+}
+
+.admin_header{
+  /* background-color: #2c3930; */
+  /* color: #DCD7C9; */
+}
+
+.admin_body{
+  display: flex;
+}
+
+.side_div{
+  flex-grow: 1;
+}
+
+.content_div{
+  flex-grow: 5;
+}
