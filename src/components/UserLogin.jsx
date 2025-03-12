@@ -38,20 +38,25 @@ const UserLogin = () => {
     })
   }
 
-  // 로그인 가능한지 검증한 함수
+  // 로그인 가능한지, 불가능한지 검증한 함수(로그인x)
   const login = ()=>{
     userApi.userLogin(loginInfo)
       .then(res=>{
         console.log(res.data);
         if(res.data != ''){
+          // 로그인 성공하면 sessionStorage에 로그인하는 회원의 id,이름,권한 정보를 저장
           alert('로그인 성공')
+          sessionStorage.setItem('userId',res.data.userId)
+          sessionStorage.setItem('userName',res.data.userName)
+          sessionStorage.setItem('userRoll',res.data.userRoll)
         }
         else{
           alert('아이디 비번 안맞아용')
         }
       })
-      .catch(error=>{})
-  }
+      .catch(error=>{console.log(error)
+      })
+  };
   
 
   return (

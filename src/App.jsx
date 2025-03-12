@@ -9,6 +9,7 @@ import UserLogin from "./components/UserLogin";
 import ShopSelect from "./common_component/ShopSelect";
 import State변경함수흐름2 from "./components/practice/State변경함수흐름2";
 import State변경함수흐름3 from "./components/practice/State변경함수흐름3";
+import StorageTest from "./components/practice/StorageTest";
 
 
 function App() {
