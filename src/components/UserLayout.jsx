@@ -6,7 +6,7 @@ const UserLayout = () => {
   return (
     <div className='user-container'>
       <div>
-        <UserHeader/>
+        <UserHeader />
       </div>
       <div>
         <Outlet/>

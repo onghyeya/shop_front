@@ -4,6 +4,7 @@ import ShopInput from '../common_component/ShopInput'
 import ShopButton from '../common_component/ShopButton'
 import * as userApi from '../apis/UserApi'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
   // axios.get() 으로 여러 데이터를 전달하는 방법
@@ -23,32 +24,45 @@ import axios from 'axios'
 
 
 const UserLogin = () => {
+  const nav = useNavigate();
 
   // 아이디 와 비밀번호를 보내줄 객체
-  const [loginInfo, setLoginInfo] = useState({
+  const [loginData, setLoginData] = useState({
     userId:''
     ,userPw:''
   })
 
   // input 태그에 값을 입력할때 바뀌는 함수
   const changeLoginData = (e)=>{
-    setLoginInfo({
-      ...loginInfo
+    setLoginData({
+      ...loginData
       ,[e.target.name]:e.target.value
     })
   }
 
   // 로그인 가능한지, 불가능한지 검증한 함수(로그인x)
   const login = ()=>{
-    userApi.userLogin(loginInfo)
+    userApi.userLogin(loginData)
       .then(res=>{
         console.log(res.data);
         if(res.data != ''){
           // 로그인 성공하면 sessionStorage에 로그인하는 회원의 id,이름,권한 정보를 저장
           alert('로그인 성공')
-          sessionStorage.setItem('userId',res.data.userId)
-          sessionStorage.setItem('userName',res.data.userName)
-          sessionStorage.setItem('userRoll',res.data.userRoll)
+          // sessionStorage.setItem('userId',res.data.userId)
+          // sessionStorage.setItem('userName',res.data.userName)
+          // sessionStorage.setItem('userRoll',res.data.userRoll)
+
+          // 로그인한 회원의 아이디, 이름, 권한 정보만 가진 객체 생성
+          // const loginInfo = {
+          //   userId: res.data.userId,
+          //   userName: res.data.userName,
+          //   userRoll: res.data.userRoll
+          // }
+          // loginInfo 객체를 json(객체형태로 생긴 문자열)으로 변환 후 세션에 저장
+          // JSON.stringify(객체) >  객체를 문자열화(json) 한다
+          // JSON.parse(json) > 문자열화(json) 한 데이터를 객체로 변환
+          sessionStorage.setItem('loginInfo',JSON.stringify(res.data));
+          nav('/')
         }
         else{
           alert('아이디 비번 안맞아용')
@@ -68,7 +82,7 @@ const UserLogin = () => {
           <ShopInput
             size='wide' 
             name = 'userId' 
-            value ={loginInfo.userId} 
+            value ={loginData.userId} 
             onChange={e=>{
               changeLoginData(e)
             }} 
@@ -80,7 +94,7 @@ const UserLogin = () => {
             size='wide' 
             type='password' 
             name = 'userPw' 
-            value ={loginInfo.userPw} 
+            value ={loginData.userPw} 
             onChange={e=>{
               changeLoginData(e)
             }}
@@ -92,6 +106,7 @@ const UserLogin = () => {
             onClick = {e=>{
               login()
             }}
+         
           />
         </div>
       </div>

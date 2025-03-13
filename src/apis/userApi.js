@@ -9,7 +9,7 @@ export const userJoin = (joinData)=>{
 }
 
 // user 로그인 기능
-export const userLogin = (loginInfo)=>{
-  const respones = axios.get('/api/users/login',{params:loginInfo})
+export const userLogin = (loginData)=>{
+  const respones = axios.get('/api/users/login',{params:loginData})
   return respones;
 }

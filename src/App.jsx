@@ -6,25 +6,28 @@ import TeacherItemForm from "./components/TeacherItemForm";
 import CateManage from "./components/CateManage";
 import UserJoin from "./components/UserJoin";
 import UserLogin from "./components/UserLogin";
-import ShopSelect from "./common_component/ShopSelect";
-import State변경함수흐름2 from "./components/practice/State변경함수흐름2";
-import State변경함수흐름3 from "./components/practice/State변경함수흐름3";
-import StorageTest from "./components/practice/StorageTest";
+import { useState } from "react";
 
-
+  // sessionStorage에 있는 loginInfo 데이터 받아오기
+  // 사용하려면 객체로 변환
+  // const data = sessionStorage.getItem('loginInfo');
+  // console.log(data);
+  // json > 객체
+  // console.log(JSON.parse(data));
 function App() {
-   
+  
   return (
     <div className="container">
       <Routes>
         {/* 유저가 접속하는 페이지 (2단) */}
-        <Route path="/" element={<UserLayout />}>
+        <Route path="/" element={<UserLayout/>}>
           {/* 상품 목록 페이지 */}
           <Route path="" element={<div>상품 목록 페이지</div>} />
           {/* 상품 상세 페이지 */}
           <Route path="detail" element={<div>상품 상세 페이지</div>} />
           {/* 회원 가입 페이지 */}
           <Route path="user-join" element={<UserJoin/>} />
+          {/* 로그인 페이지 */}
           <Route path="user-login" element={<UserLogin/>}/>
         </Route>
 
