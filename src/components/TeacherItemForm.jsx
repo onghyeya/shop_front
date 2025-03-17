@@ -105,6 +105,10 @@ const TeacherItemForm = () => {
             onChange={(e) => changeBookData(e)}
           ></textarea>
         </div>
+        <div>
+          <p>도서이미지</p>
+          <input type='file'/>
+        </div>
       </div>
       <div>
         <ShopButton type="button" title={'등록'} size="normal" onClick={e=>regBook()}/>

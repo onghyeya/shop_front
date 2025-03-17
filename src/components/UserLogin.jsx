@@ -62,7 +62,10 @@ const UserLogin = () => {
           // JSON.stringify(객체) >  객체를 문자열화(json) 한다
           // JSON.parse(json) > 문자열화(json) 한 데이터를 객체로 변환
           sessionStorage.setItem('loginInfo',JSON.stringify(res.data));
-          nav('/')
+          
+          // 로그인한 유저의 권한에 따라 이동할 페이지를 지정
+          // 일반회원: 상품 목록 페이지, 관리자: 상품 등록 페이지
+          nav(res.data.userRoll==='USER'?'/':'/admin/reg-item')
         }
         else{
           alert('아이디 비번 안맞아용')

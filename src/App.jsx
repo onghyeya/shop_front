@@ -7,6 +7,7 @@ import CateManage from "./components/CateManage";
 import UserJoin from "./components/UserJoin";
 import UserLogin from "./components/UserLogin";
 import { useState } from "react";
+import UploadTest from "./components/practice/UploadTest";
 
   // sessionStorage에 있는 loginInfo 데이터 받아오기
   // 사용하려면 객체로 변환
@@ -18,6 +19,8 @@ function App() {
   
   return (
     <div className="container">
+      <UploadTest/>
+
       <Routes>
         {/* 유저가 접속하는 페이지 (2단) */}
         <Route path="/" element={<UserLayout/>}>
@@ -33,6 +36,7 @@ function App() {
 
         {/* 관리자가 접속하는 페이지 (3단) */}
         <Route path="/admin" element={<AdminLayout />}>
+        {/* props로 전달  */}
           {/* 상품 등록 */}
           <Route path="reg-item" element={<TeacherItemForm/>} />
           {/* 회원 관리 */}

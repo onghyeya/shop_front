@@ -4,6 +4,7 @@ import styles from './AdminLayout.module.css'
 import UserHeader from './UserHeader'
 
 const AdminLayout = () => {
+  // props로 loginInfo, setLoginInfo
   return (
     <div className={styles.admin_container}>
       <div className={styles.admin_header}>
