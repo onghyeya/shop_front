@@ -10,6 +10,15 @@ import ShopButton from "../common_component/ShopButton";
 // 책 소개  textarea
 // 카테고리코드 select
 const TeacherItemForm = () => {
+  // 파일 그대로 가져갈 수 있게 설정내용
+  const fileConfig = {header:{'Content-Type':'multipart/form-data'}}
+  // 메인 페이지 사진 파일 담을 변수
+  const [mainImgFile,setMainImgFile] = useState(null);
+  // 상세 페이지 사진 파일 담을 변수
+  const [detailImgFile,setDetailImgFile] = useState(null);
+
+  
+
   // category 목록을 담아올 변수
   const [CateList, setCateList] = useState([]);
 
@@ -38,8 +47,8 @@ const TeacherItemForm = () => {
     });
   };
 
-  console.log(bookData);
 
+  // 도서 등록 기능
   const regBook = ()=>{
     axios.post('/api/books',bookData)
       .then(res=>{
@@ -107,7 +116,8 @@ const TeacherItemForm = () => {
         </div>
         <div>
           <p>도서이미지</p>
-          <input type='file'/>
+          <input type='file' onChange={(e)=>{setMainImgFile(e.target.files[0])}}/>
+          <input type='file' onChange={(e)=>{setDetailImgFile(e.target.files[0])}}/>
         </div>
       </div>
       <div>
