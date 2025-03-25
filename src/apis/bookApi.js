@@ -52,7 +52,13 @@ export const insertCategory = (cate)=>{
   }
 */ 
 
+
+
 export const insertBook = (book)=>{
-  const response = axios.post('/api/admins',book)
+  // 파일 그대로 가져갈 수 있게 설정내용
+  const fileConfig = {
+    header:{'Content-Type':'multipart/form-data'}
+  };
+  const response = axios.post('/api/books',book,fileConfig);
   return response;
 }

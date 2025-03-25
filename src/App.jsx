@@ -19,7 +19,7 @@ function App() {
   
   return (
     <div className="container">
-      <UploadTest/>
+      {/* <UploadTest/> */}
 
       <Routes>
         {/* 유저가 접속하는 페이지 (2단) */}

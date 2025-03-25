@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ShopInput from "../common_component/ShopInput";
 import ShopButton from "../common_component/ShopButton";
+import { insertBook } from "../apis/bookApi";
 
 // 상품 등록 컴포넌트
 // 도서명   input
@@ -10,14 +11,6 @@ import ShopButton from "../common_component/ShopButton";
 // 책 소개  textarea
 // 카테고리코드 select
 const TeacherItemForm = () => {
-  // 파일 그대로 가져갈 수 있게 설정내용
-  const fileConfig = {header:{'Content-Type':'multipart/form-data'}}
-  // 메인 페이지 사진 파일 담을 변수
-  const [mainImgFile,setMainImgFile] = useState(null);
-  // 상세 페이지 사진 파일 담을 변수
-  const [detailImgFile,setDetailImgFile] = useState(null);
-
-  
 
   // category 목록을 담아올 변수
   const [CateList, setCateList] = useState([]);
@@ -30,6 +23,11 @@ const TeacherItemForm = () => {
     publisher: "",
     bookInfo: "",
   });
+
+  // 메인 페이지 사진 파일 담을 변수
+  const [mainImgFile,setMainImgFile] = useState(null);
+  // 상세 페이지 사진 파일 담을 변수
+  const [detailImgFile,setDetailImgFile] = useState(null);
 
   // category 목록 조회
   useEffect(() => {
@@ -50,7 +48,18 @@ const TeacherItemForm = () => {
 
   // 도서 등록 기능
   const regBook = ()=>{
-    axios.post('/api/books',bookData)
+    const regForm = new FormData();
+    // 도서 등록 시(DB에 insert)필요한 데이터 적재
+    regForm.append('cateCode',bookData.cateCode)
+    regForm.append('bookName',bookData.bookName)
+    regForm.append('bookPrice',bookData.bookPrice)
+    regForm.append('publisher',bookData.publisher)
+    regForm.append('bookInfo',bookData.bookInfo)
+
+    // 첨부파일 데이터 적재
+    regForm.append('mainImgFile',mainImgFile);
+    regForm.append('detailImgFile',detailImgFile);
+    insertBook(regForm)
       .then(res=>{
         alert('성공!')
       })
@@ -115,8 +124,11 @@ const TeacherItemForm = () => {
           ></textarea>
         </div>
         <div>
-          <p>도서이미지</p>
+          <p>도서메인 이미지</p>
           <input type='file' onChange={(e)=>{setMainImgFile(e.target.files[0])}}/>
+        </div>
+        <div>
+          <p>도서 상세 이미지</p>
           <input type='file' onChange={(e)=>{setDetailImgFile(e.target.files[0])}}/>
         </div>
       </div>
